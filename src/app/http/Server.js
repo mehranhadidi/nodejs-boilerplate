@@ -1,10 +1,11 @@
 const express = require('express');
 
 class Server {
-    constructor({ config, router }) {
-        this.config = config;
-        this.express = express();
+    constructor({ config, router, logger }) {
+        this.config = config
+        this.express = express()
         this.express.use(router)
+        this.logger = logger
     }
 
     async start() {
@@ -13,7 +14,7 @@ class Server {
             const { port } = http.address()
 
             // Log express start
-            console.log(`${process.pid} is running on port ${port}`);
+            this.logger.info(`${process.pid} is running on port ${port}`)
         })
     }
 }
