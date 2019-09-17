@@ -1,9 +1,10 @@
 const express = require('express');
 
 class Server {
-    constructor({ config }) {
+    constructor({ config, router }) {
         this.config = config;
         this.express = express();
+        this.express.use(router)
     }
 
     async start() {
