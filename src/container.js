@@ -6,6 +6,7 @@ const config = require('../configs')
 
 const Application = require('./app/Application')
 const Server = require('./app/http/Server')
+const router = require('./app/http/router')
 
 const container = createContainer();
 
@@ -16,6 +17,9 @@ container
     .register({
         app: asClass(Application).singleton(),
         server: asClass(Server).singleton(),
+    })
+    .register({
+        router: asFunction(router).singleton(),
     })
     .register({
         config: asValue(config)
